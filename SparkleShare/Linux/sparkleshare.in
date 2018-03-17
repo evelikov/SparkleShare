@@ -27,3 +27,4 @@ case $1 in
     mono "@ABS_INSTALL_DIR@/SparkleShare.exe" $@
     ;;
 esac
+
