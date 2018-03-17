@@ -134,6 +134,7 @@
     <None Include="..\Common\Presets\planio%402x.png">
       <Link>Presets\planio%402x.png</Link>
     </None>
+    <None Include="sparkleshare.in" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
