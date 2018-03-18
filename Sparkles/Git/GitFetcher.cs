@@ -335,6 +335,7 @@ namespace Sparkles.Git {
         void InstallConfiguration ()
         {
             string [] settings = {
+                "advice.ignoredHook false",
                 "core.autocrlf input",
                 "core.quotepath false", // Don't quote "unusual" characters in path names
                 "core.ignorecase false", // Be case sensitive explicitly to work on Mac
