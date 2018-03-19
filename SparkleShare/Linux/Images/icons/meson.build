@@ -17,14 +17,14 @@ install_data(
     sources: join_paths('hicolor', 'symbolic', 'apps', app_icon_name + '-symbolic.svg'),
     install_dir: join_paths(theme_dir, 'symbolic', 'apps'))
 
-symbolic_icons = ['syncing',
-                  'syncing-up',
-                  'syncing-down',
-                  'syncing-error']
+symbolic_icons = ['process-syncing',
+                  'process-syncing-up',
+                  'process-syncing-down',
+                  'process-syncing-error']
 
 foreach icon : symbolic_icons
     install_data(
-        sources: join_paths('hicolor', 'symbolic', 'status', 'org.sparkleshare.SparkleShare-' + icon + '-symbolic.svg'),
+        sources: join_paths('hicolor', 'symbolic', 'status', icon + '-symbolic.svg'),
         install_dir: join_paths(theme_dir, 'symbolic', 'status'))
 endforeach
 
@@ -67,4 +67,3 @@ foreach size : sizes
     install_data(sources: join_paths('hicolor', size + 'x' + size, category, 'process-syncing-error.png'),
         install_dir: join_paths(app_theme_dir, size + 'x' + size, category))
 endforeach
-

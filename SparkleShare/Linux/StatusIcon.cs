@@ -68,18 +68,19 @@ namespace SparkleShare {
                 Application.Invoke (delegate {
                     string icon_name = "org.sparkleshare.SparkleShare";
 
-                    if (use_appindicator) {
-                        #if HAVE_APP_INDICATOR
-                        if (state == IconState.SyncingUp)
-                            icon_name += "-syncing-up";
-                        else if (state == IconState.SyncingDown)
-                            icon_name += "-syncing-down";
-                        else if (state == IconState.Syncing)
-                            icon_name += "-syncing";
-                        else if (state == IconState.Error)
-                            icon_name += "-syncing-error";
+                    if (state == IconState.SyncingUp)
+                        icon_name = "process-syncing-up";
+                    else if (state == IconState.SyncingDown)
+                        icon_name = "process-syncing-down";
+                    else if (state == IconState.Syncing)
+                        icon_name = "process-syncing";
+                    else if (state == IconState.Error)
+                        icon_name = "process-syncing-error";
 
+                    if (use_appindicator) {
                         icon_name += "-symbolic";
+
+                        #if HAVE_APP_INDICATOR
                         indicator.IconName = icon_name;
 
                         // Force update of the status icon
@@ -88,15 +89,6 @@ namespace SparkleShare {
                         #endif
 
                     } else {
-                        if (state == IconState.SyncingUp)
-                            icon_name += "process-syncing-up";
-                        else if (state == IconState.SyncingDown)
-                            icon_name += "process-syncing-down";
-                        else if (state == IconState.Syncing)
-                            icon_name += "process-syncing";
-                        else if (state == IconState.Error)
-                            icon_name += "process-syncing-error";
-
                         this.status_icon.IconName = icon_name;
                     }
                 });

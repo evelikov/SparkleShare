@@ -55,6 +55,16 @@ namespace SparkleShare
             //if (IconTheme.Default != null)
                 IconTheme.Default.AppendSearchPath (Path.Combine (UserInterface.AssetsPath, "icons"));
 
+            IconTheme.Default.RescanIfNeeded ();
+            Console.WriteLine (IconTheme.Default.ListIcons (null).Length);
+
+            string [] icons = IconTheme.Default.ListIcons (null);
+            Array.Sort (icons, StringComparer.InvariantCulture);
+
+            foreach (string icon in icons) {
+                Console.WriteLine (icon);
+            }
+
             var label = new Label ();
             Gdk.Color color = UserInterfaceHelpers.RGBAToColor (label.StyleContext.GetColor (StateFlags.Insensitive));
             SecondaryTextColor = UserInterfaceHelpers.ColorToHex (color);
