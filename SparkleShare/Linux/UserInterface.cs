@@ -58,6 +58,7 @@ namespace SparkleShare
             IconTheme.Default.RescanIfNeeded ();
             Console.WriteLine (IconTheme.Default.ListIcons (null).Length);
 
+
             string [] icons = IconTheme.Default.ListIcons (null);
             Array.Sort (icons, StringComparer.InvariantCulture);
 
