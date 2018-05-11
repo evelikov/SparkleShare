@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
 if [[ $UID -eq 0 ]]; then
-  echo "SparkleShare can not be run as root. Things would go utterly wrong."
+  echo "SparkleShare can not be run as root. Things would go utterly wrong. Exiting."
   exit 1
 fi
 
 case $1 in
   open|--open)
+    if [[ -z "$2" ]]; then
+       echo "A URL is required when using SparkleShare --open. Exiting."
+       exit 1
+    fi
     invite=`date -u +%N`
     open=`echo $2 | sed 's/sparkleshare:\/\/addProject\///'`
     curl --insecure --output ~/SparkleShare/.$invite.xml $open
@@ -27,4 +31,3 @@ case $1 in
     mono "@ABS_INSTALL_DIR@/SparkleShare.exe" $@
     ;;
 esac
-
