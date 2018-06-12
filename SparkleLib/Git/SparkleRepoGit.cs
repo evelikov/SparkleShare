@@ -459,6 +459,28 @@ namespace SparkleLib.Git {
         }
 
 
+        // Create a temporary file for the commit message.
+        // Borrowed from SO, with the extension bits removed
+        //
+        // https://stackoverflow.com/a/10152460
+        string GetTempFileName()
+        {
+            int attempt = 0;
+            while (true) {
+                string fileName = Path.GetRandomFileName();
+                fileName = Path.Combine(Path.GetTempPath(), fileName);
+
+                try {
+                    using (new FileStream(fileName, FileMode.CreateNew)) { }
+                    return fileName;
+                } catch (IOException ex) {
+                    if (++attempt == 10)
+                        throw new IOException("No unique temporary file name is available.", ex);
+                }
+            }
+        }
+
+
         // Commits the made changes
         private void Commit (string message)
         {
@@ -474,10 +496,15 @@ namespace SparkleLib.Git {
                 this.user_is_set = true;
             }
 
-            git = new SparkleGit (LocalPath, "commit --all --message=\"" + message + "\" " +
+            string filename = GetTempFileName ();
+            File.WriteAllText (filename, text);
+
+            git = new SparkleGit (LocalPath, "commit --all --file \"" + filename + "\" " +
                 "--author=\"" + base.local_config.User.Name + " <" + base.local_config.User.Email + ">\"");
 
             git.StartAndReadStandardOutput ();
+
+            File.Delete (filename);
         }
 
 
