@@ -50,9 +50,15 @@ namespace SparkleShare {
         {
             if (use_appindicator) {
                 #if HAVE_APP_INDICATOR
-                indicator = new Indicator ("sparkleshare", "sparkleshare", (int) IndicatorCategory.ApplicationStatus) {
-                    IconName = UserInterface.APP_ID + "-symbolic",
-                    Status   = (int) IndicatorStatus.Active
+                try {
+                    indicator = new Indicator ("sparkleshare", "sparkleshare", (int) IndicatorCategory.ApplicationStatus) {
+                        IconName = UserInterface.APP_ID + "-symbolic",
+                        Status   = (int) IndicatorStatus.Active
+                } catch (Exception e) {
+                    use_appindicator = false;
+                    // XXX: fallback gracefully?
+                    Console.WriteLine ("Failed to create an AppIndicator - did you install the GNOME extension ... $link.");
+                    Environment.Exit (-1);
                 };
                 #endif
 

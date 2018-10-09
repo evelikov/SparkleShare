@@ -19,7 +19,8 @@ using System;
 using System.Reflection;
 
 namespace Sparkles {
-    
+
+    // XXX: fold the Ubuntu/GNOME BS into Linux
     public enum OS {
         Unknown,
         macOS,

@@ -49,7 +49,8 @@ gio = dependency('gio-sharp-3.0')
 glib = dependency('glib-sharp-3.0')
 webkit = dependency('webkit2-sharp-4.0')
 notify = dependency('notify-sharp-3.0')
-appindicator = dependency('appindicator3-sharp-0.1', required: get_option('ubuntu'))
+# XXX: make it mandatory at some point
+appindicator = dependency('appindicator-sharp-0.1', required: false)
 
 args = '-r:Mono.Posix'
 

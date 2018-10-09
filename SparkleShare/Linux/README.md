@@ -26,7 +26,7 @@ sudo apt-get install \
 sudo apt-get install \
   desktop-file-utils \
   gtk-sharp3-gapi \
-  libappindicator3-0.1-cil-dev \
+  libappindicator-0.1-cil-dev \
   libdbus-glib2.0-cil-dev \
   libgtk3.0-cil-dev \
   libnotify3.0-cil-dev \
@@ -52,6 +52,7 @@ sudo dnf install \
 sudo dnf install \
   gtk-sharp3-devel \
   gtk-sharp3-gapi \
+  libappindicator-sharp-devel \
   libtool \
   meson \
   notify-sharp3-devel \
@@ -60,6 +61,7 @@ sudo dnf install \
 ```
 
 
+### MOVE: WHERE: Debian Sid is the first one to have appindicator ###
 ### Additional source build requirements
 
 Install these `soup-sharp` and `webkit2gtk-sharp` bindings:
@@ -79,18 +81,6 @@ cd webkit2-sharp/
 make
 sudo make install
 ```
-
-On Ubuntu, also install these `appindicator-sharp` bindings:
-
-```bash
-sudo apt-get install libappindicator3-dev
-git clone https://github.com/hbons/appindicator-sharp
-cd appindicator-sharp/
-./autogen.sh
-make
-sudo make install
-```
-
 
 ### Start the build
 
